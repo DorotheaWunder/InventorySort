@@ -19,7 +19,7 @@ Item* createItem(const char* name, int value, int rarity, float weight)
     return newItem;
 }
 
-void InitializeInventory()
+void InitializeDatabase()
 {
     inventory[0] = createItem("Rusty Sword", 50, 1, 3.5f);
     inventory[1] = createItem("Sword", 100, 2, 4.5f);

@@ -17,4 +17,10 @@ typedef struct HashTable
     Node* hashTable[TABLE_SIZE];
 } HashTable;
 
+
+unsigned int hash(const char* name);
+void InsertItem(HashTable* table, Item* newItem);
+void RemoveItem(HashTable* table, const char* name);
+
+
 #endif //HASHSYSTEM_H

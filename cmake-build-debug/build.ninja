@@ -89,6 +89,14 @@ build CMakeFiles/InventorySort.dir/UI.c.obj: C_COMPILER__InventorySort_unscanned
   OBJECT_DIR = CMakeFiles\InventorySort.dir
   OBJECT_FILE_DIR = CMakeFiles\InventorySort.dir
 
+build CMakeFiles/InventorySort.dir/PlayerInventory.c.obj: C_COMPILER__InventorySort_unscanned_Debug C$:/Users/Administratör/CLionProjects/InventorySort/PlayerInventory.c || cmake_object_order_depends_target_InventorySort
+  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
+  DEP_FILE = CMakeFiles\InventorySort.dir\PlayerInventory.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
+  OBJECT_DIR = CMakeFiles\InventorySort.dir
+  OBJECT_FILE_DIR = CMakeFiles\InventorySort.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target InventorySort
@@ -97,7 +105,7 @@ build CMakeFiles/InventorySort.dir/UI.c.obj: C_COMPILER__InventorySort_unscanned
 #############################################
 # Link the executable InventorySort.exe
 
-build InventorySort.exe: C_EXECUTABLE_LINKER__InventorySort_Debug CMakeFiles/InventorySort.dir/main.c.obj CMakeFiles/InventorySort.dir/ItemDatabase.c.obj CMakeFiles/InventorySort.dir/HashSystem.c.obj CMakeFiles/InventorySort.dir/Algorithm.c.obj CMakeFiles/InventorySort.dir/UI.c.obj | _deps/raylib-build/raylib/libraylib.a || _deps/raylib-build/raylib/external/glfw/src/glfw _deps/raylib-build/raylib/libraylib.a
+build InventorySort.exe: C_EXECUTABLE_LINKER__InventorySort_Debug CMakeFiles/InventorySort.dir/main.c.obj CMakeFiles/InventorySort.dir/ItemDatabase.c.obj CMakeFiles/InventorySort.dir/HashSystem.c.obj CMakeFiles/InventorySort.dir/Algorithm.c.obj CMakeFiles/InventorySort.dir/UI.c.obj CMakeFiles/InventorySort.dir/PlayerInventory.c.obj | _deps/raylib-build/raylib/libraylib.a || _deps/raylib-build/raylib/external/glfw/src/glfw _deps/raylib-build/raylib/libraylib.a
   FLAGS = -g
   LINK_LIBRARIES = _deps/raylib-build/raylib/libraylib.a  -lopengl32  -lglu32  -lwinmm  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\InventorySort.dir

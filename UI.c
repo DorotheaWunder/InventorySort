@@ -4,6 +4,7 @@
 #include "ui.h"
 #include "itemdatabase.h"
 #include "algorithm.h"
+#include "playerinventory.h"
 
 //---------------------------------------------------------------------------------- Panels
 Panel inventoryPanel;
@@ -20,7 +21,7 @@ void InitPanelElement(Panel* panel, Rectangle rectangle, Color color, const char
 void InitializePanels()
 {
     InitPanelElement(&inventoryPanel,
-        (Rectangle){ 20, 20, 1300, 860 },
+        (Rectangle){ 20, 20, 1300, 740 },
         (Color){ 80, 80, 80, 255 },
         "--- Inventory -------------------------------------------");
 
@@ -76,7 +77,7 @@ void InitContentElement(TableContent* content, Rectangle rectangle, Color color,
 void InitializeTable()
 {
     const char* headers[4] = { "Name", "Value", "Rarity", "Weight" };
-    InitializeInventory(inventory);
+    InitializeDatabase(inventory);
     //would this be where I hash?
 
     InitHeaderElement(&tableHeader,
@@ -138,6 +139,10 @@ Button byValue;
 Button byRarity;
 Button byWeight;
 
+
+Button gainItem;
+Button loseItem;
+
 void InitButtonElement(Button* button, Rectangle rectangle, Color defColor, Color hovColor, const char* text)
 {
     button->rectangle = rectangle;
@@ -154,6 +159,7 @@ bool IsHovering(Button button)
 
 void InitnializeButtons()
 {
+    //----------------------------------------------------------- sorting category
     InitButtonElement(&byName,
         (Rectangle){ 1350, 100, 200, 40 },
         DARKGRAY, LIGHTGRAY,
@@ -173,6 +179,19 @@ void InitnializeButtons()
         (Rectangle){ 1350, 300, 200, 40 },
         DARKGRAY, LIGHTGRAY,
         "WEIGHT");
+
+
+    //----------------------------------------------------------- adding/removing items
+
+    InitButtonElement(&gainItem,
+    (Rectangle){ 20, 780, 150, 40 },
+    DARKGREEN, GREEN,
+    "  Gain Item");
+
+    InitButtonElement(&loseItem,
+    (Rectangle){ 20, 840, 150, 40 },
+    MAROON, RED,
+    "  Lose Item");
 }
 
 void DrawButtonElement(Button button)
@@ -188,6 +207,9 @@ void DrawAllButtons()
     DrawButtonElement(byValue);
     DrawButtonElement(byRarity);
     DrawButtonElement(byWeight);
+
+    DrawButtonElement(gainItem);
+    DrawButtonElement(loseItem);
 }
 
 Category SelectCategory()

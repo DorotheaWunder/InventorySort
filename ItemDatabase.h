@@ -13,6 +13,6 @@ typedef struct Item
 extern Item* inventory[];
 
 Item* createItem(const char* name, int value, int rarity, float weight);
-void InitializeInventory();
+void InitializeDatabase();
 
 #endif //ITEMDATABASE_H

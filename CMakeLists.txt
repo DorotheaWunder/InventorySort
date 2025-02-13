@@ -38,6 +38,8 @@ add_executable(InventorySort main.c
         Algorithm.c
         UI.h
         UI.c
+        PlayerInventory.h
+        PlayerInventory.c
 )
 
 # set the include directory
