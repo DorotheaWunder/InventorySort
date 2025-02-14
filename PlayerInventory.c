@@ -8,10 +8,7 @@
 
 void InitializeInventory(Inventory* inventory)
 {
-    for (int i = 0; i < TABLE_SIZE; i++)
-    {
-        inventory->hashTable.hashTable[i] = NULL;
-    }
+    InitHashTable(&inventory->hashTable);
 }
 
 void AddToInventory(Inventory* inventory, Item* newItem)

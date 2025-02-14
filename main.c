@@ -8,7 +8,10 @@ int main(void)
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Inventory UI");
 
-    InitializeMenu();
+    InitializeDatabase(inventory);
+
+    Item* playerInventory[INVENTORY_SIZE];
+    InitializeMenu(playerInventory, INVENTORY_SIZE);
 
     SetTargetFPS(60);
 

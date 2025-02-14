@@ -40,6 +40,8 @@ add_executable(InventorySort main.c
         UI.c
         PlayerInventory.h
         PlayerInventory.c
+        Menu.h
+        Menu.c
 )
 
 # set the include directory

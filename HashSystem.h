@@ -19,8 +19,9 @@ typedef struct HashTable
 
 
 unsigned int hash(const char* name);
+void InitHashTable(HashTable* table);
 void InsertItem(HashTable* table, Item* newItem);
 void RemoveItem(HashTable* table, const char* name);
-
+Item* FindItem(HashTable* table, const char* name);
 
 #endif //HASHSYSTEM_H
