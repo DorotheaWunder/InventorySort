@@ -33,6 +33,24 @@ void SwapPosition(Item** a, Item** b)
     *b = temp;
 }
 
+int Partition(Item** inventory, int low, int high, int (*compare)(Item*, Item*))
+{
+    Item* pivot = inventory[high];
+    int i = low - 1;
+
+    for (int j = low; j < high; j++)
+    {
+        if (compare(inventory[j], pivot) < 0)
+        {
+            i++;
+            SwapPosition(&inventory[i], &inventory[j]);
+        }
+    }
+
+    SwapPosition(&inventory[i + 1], &inventory[high]);
+    return i + 1;
+}
+
 //------------------------------------------------- generalized algorithms
 void BubbleSortAlgorithm(Item** inventory, int size, int (*compare)(Item*, Item*))
 {
@@ -45,6 +63,17 @@ void BubbleSortAlgorithm(Item** inventory, int size, int (*compare)(Item*, Item*
                 SwapPosition(&inventory[j], &inventory[j+1]);
             }
         }
+    }
+}
+
+void QuickSortAlgorithm(Item** inventory, int low, int high, int (*compare)(Item*, Item*))
+{
+    if (low < high)
+    {
+        int pivotIndex = Partition(inventory, low, high, compare);
+
+        QuickSortAlgorithm(inventory, low, pivotIndex - 1, compare);
+        QuickSortAlgorithm(inventory, pivotIndex + 1, high, compare);
     }
 }
 
@@ -72,5 +101,7 @@ void SortInventory(Item** inventory, int size, Category category)
     default:
     }
 
-    BubbleSortAlgorithm(inventory, size, compare);
+
+    //BubbleSortAlgorithm(inventory, size, compare);
+    QuickSortAlgorithm(inventory, 0, size - 1, compare);
 }

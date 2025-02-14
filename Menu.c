@@ -136,9 +136,9 @@ void DrawAllButtons()
     DrawButtonElement(byRarity);
     DrawButtonElement(byWeight);
 
-    DrawButtonElement(gainItem);
-    DrawButtonElement(getAll);
-    DrawButtonElement(loseItem);
+    // DrawButtonElement(gainItem);
+    // DrawButtonElement(getAll);
+    // DrawButtonElement(loseItem);
 }
 
 Category SelectCategory()
