@@ -57,22 +57,6 @@ build CMakeFiles/InventorySort.dir/main.c.obj: C_COMPILER__InventorySort_unscann
   OBJECT_DIR = CMakeFiles\InventorySort.dir
   OBJECT_FILE_DIR = CMakeFiles\InventorySort.dir
 
-build CMakeFiles/InventorySort.dir/ItemDatabase.c.obj: C_COMPILER__InventorySort_unscanned_Debug C$:/Users/Administratör/CLionProjects/InventorySort/ItemDatabase.c || cmake_object_order_depends_target_InventorySort
-  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
-  DEP_FILE = CMakeFiles\InventorySort.dir\ItemDatabase.c.obj.d
-  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
-  OBJECT_DIR = CMakeFiles\InventorySort.dir
-  OBJECT_FILE_DIR = CMakeFiles\InventorySort.dir
-
-build CMakeFiles/InventorySort.dir/HashSystem.c.obj: C_COMPILER__InventorySort_unscanned_Debug C$:/Users/Administratör/CLionProjects/InventorySort/HashSystem.c || cmake_object_order_depends_target_InventorySort
-  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
-  DEP_FILE = CMakeFiles\InventorySort.dir\HashSystem.c.obj.d
-  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
-  OBJECT_DIR = CMakeFiles\InventorySort.dir
-  OBJECT_FILE_DIR = CMakeFiles\InventorySort.dir
-
 build CMakeFiles/InventorySort.dir/Algorithm.c.obj: C_COMPILER__InventorySort_unscanned_Debug C$:/Users/Administratör/CLionProjects/InventorySort/Algorithm.c || cmake_object_order_depends_target_InventorySort
   DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
   DEP_FILE = CMakeFiles\InventorySort.dir\Algorithm.c.obj.d
@@ -81,17 +65,41 @@ build CMakeFiles/InventorySort.dir/Algorithm.c.obj: C_COMPILER__InventorySort_un
   OBJECT_DIR = CMakeFiles\InventorySort.dir
   OBJECT_FILE_DIR = CMakeFiles\InventorySort.dir
 
-build CMakeFiles/InventorySort.dir/UI.c.obj: C_COMPILER__InventorySort_unscanned_Debug C$:/Users/Administratör/CLionProjects/InventorySort/UI.c || cmake_object_order_depends_target_InventorySort
+build CMakeFiles/InventorySort.dir/UIold.c.obj: C_COMPILER__InventorySort_unscanned_Debug C$:/Users/Administratör/CLionProjects/InventorySort/UIold.c || cmake_object_order_depends_target_InventorySort
   DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
-  DEP_FILE = CMakeFiles\InventorySort.dir\UI.c.obj.d
+  DEP_FILE = CMakeFiles\InventorySort.dir\UIold.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
   OBJECT_DIR = CMakeFiles\InventorySort.dir
   OBJECT_FILE_DIR = CMakeFiles\InventorySort.dir
 
-build CMakeFiles/InventorySort.dir/PlayerInventory.c.obj: C_COMPILER__InventorySort_unscanned_Debug C$:/Users/Administratör/CLionProjects/InventorySort/PlayerInventory.c || cmake_object_order_depends_target_InventorySort
+build CMakeFiles/InventorySort.dir/Menuold.c.obj: C_COMPILER__InventorySort_unscanned_Debug C$:/Users/Administratör/CLionProjects/InventorySort/Menuold.c || cmake_object_order_depends_target_InventorySort
   DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
-  DEP_FILE = CMakeFiles\InventorySort.dir\PlayerInventory.c.obj.d
+  DEP_FILE = CMakeFiles\InventorySort.dir\Menuold.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
+  OBJECT_DIR = CMakeFiles\InventorySort.dir
+  OBJECT_FILE_DIR = CMakeFiles\InventorySort.dir
+
+build CMakeFiles/InventorySort.dir/Hashtable.c.obj: C_COMPILER__InventorySort_unscanned_Debug C$:/Users/Administratör/CLionProjects/InventorySort/Hashtable.c || cmake_object_order_depends_target_InventorySort
+  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
+  DEP_FILE = CMakeFiles\InventorySort.dir\Hashtable.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
+  OBJECT_DIR = CMakeFiles\InventorySort.dir
+  OBJECT_FILE_DIR = CMakeFiles\InventorySort.dir
+
+build CMakeFiles/InventorySort.dir/Inventory.c.obj: C_COMPILER__InventorySort_unscanned_Debug C$:/Users/Administratör/CLionProjects/InventorySort/Inventory.c || cmake_object_order_depends_target_InventorySort
+  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
+  DEP_FILE = CMakeFiles\InventorySort.dir\Inventory.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
+  OBJECT_DIR = CMakeFiles\InventorySort.dir
+  OBJECT_FILE_DIR = CMakeFiles\InventorySort.dir
+
+build CMakeFiles/InventorySort.dir/UI.c.obj: C_COMPILER__InventorySort_unscanned_Debug C$:/Users/Administratör/CLionProjects/InventorySort/UI.c || cmake_object_order_depends_target_InventorySort
+  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
+  DEP_FILE = CMakeFiles\InventorySort.dir\UI.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src -IC:/Users/Administratör/CLionProjects/InventorySort/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
   OBJECT_DIR = CMakeFiles\InventorySort.dir
@@ -113,7 +121,7 @@ build CMakeFiles/InventorySort.dir/Menu.c.obj: C_COMPILER__InventorySort_unscann
 #############################################
 # Link the executable InventorySort.exe
 
-build InventorySort.exe: C_EXECUTABLE_LINKER__InventorySort_Debug CMakeFiles/InventorySort.dir/main.c.obj CMakeFiles/InventorySort.dir/ItemDatabase.c.obj CMakeFiles/InventorySort.dir/HashSystem.c.obj CMakeFiles/InventorySort.dir/Algorithm.c.obj CMakeFiles/InventorySort.dir/UI.c.obj CMakeFiles/InventorySort.dir/PlayerInventory.c.obj CMakeFiles/InventorySort.dir/Menu.c.obj | _deps/raylib-build/raylib/libraylib.a || _deps/raylib-build/raylib/external/glfw/src/glfw _deps/raylib-build/raylib/libraylib.a
+build InventorySort.exe: C_EXECUTABLE_LINKER__InventorySort_Debug CMakeFiles/InventorySort.dir/main.c.obj CMakeFiles/InventorySort.dir/Algorithm.c.obj CMakeFiles/InventorySort.dir/UIold.c.obj CMakeFiles/InventorySort.dir/Menuold.c.obj CMakeFiles/InventorySort.dir/Hashtable.c.obj CMakeFiles/InventorySort.dir/Inventory.c.obj CMakeFiles/InventorySort.dir/UI.c.obj CMakeFiles/InventorySort.dir/Menu.c.obj | _deps/raylib-build/raylib/libraylib.a || _deps/raylib-build/raylib/external/glfw/src/glfw _deps/raylib-build/raylib/libraylib.a
   FLAGS = -g
   LINK_LIBRARIES = _deps/raylib-build/raylib/libraylib.a  -lopengl32  -lglu32  -lwinmm  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\InventorySort.dir

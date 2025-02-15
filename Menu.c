@@ -1,19 +1,17 @@
 ﻿#include <stdio.h>
-#include <stdlib.h>
 #include "raylib.h"
 #include "ui.h"
-#include "itemdatabase.h"
+#include "hashtable.h"
+#include "inventory.h"
 #include "algorithm.h"
-#include "playerinventory.h"
-#include "menu.h"
 
-
+extern HashTable inventory;
 
 Panel inventoryPanel;
 Panel categoryPanel;
 Panel algorithmPanel;
 
-void InitializePanels()
+void InitializeMenuPanels()
 {
     InitPanelElement(&inventoryPanel,
         (Rectangle){ 20, 20, 1300, 740 },
@@ -38,42 +36,51 @@ void DrawAllPanels()
     DrawPanelElement(algorithmPanel);
 }
 
-TableHeader tableHeader;
-TableContent tableContent;
-
-void InitializeTable(HashTable** playerInventory, int inventorySize)
+void DrawMenuTable(Table table, HashTable* inventory)
 {
-    const char* headers[4] = { "Name", "Value", "Rarity", "Weight" };
+    float colWidth = table.rectangle.width / table.columns;
+    float rowHeight = 40;
 
-    InitHeaderElement(&tableHeader,
-        (Rectangle){ 30, 100, 1280, 50 },
-        GRAY,
-        headers,
-        30);
+    DrawRectangleRec(table.rectangle, (Color){60, 60, 60, 255});
 
-    InitContentElement(&tableContent,
-        (Rectangle){ 30, 150, 600, 10 },
-        LIGHTGRAY,
-        playerInventory,
-        inventorySize,
-        25);
+    for (int i = 0; i < table.columns; i++)
+    {
+        float xPos = table.rectangle.x + i * colWidth;
+        DrawText(table.columnHeaders[i], xPos + 10, table.rectangle.y + 10, 20, WHITE);
+    }
 
-    // InitContentElement(&tableContent,
-    // (Rectangle){ 30, 150, 600, 10 },
-    // LIGHTGRAY,
-    // playerInventory,
-    // inventorySize,
-    // 25);
+    int rowIndex = 0;
+    for (int i = 0; i < TABLE_SIZE; i++)
+    {
+        Node* currentNode = inventory->buckets[i];
+        while (currentNode)
+        {
+            float yPos = table.rectangle.y + (rowIndex + 1) * rowHeight;
+
+            DrawText(currentNode->item.name, table.rectangle.x + 10, yPos + 10, 20, WHITE);
+
+            char valueText[10];
+            sprintf(valueText, "%d", currentNode->item.value);
+            DrawText(valueText, table.rectangle.x + colWidth + 10, yPos + 10, 20, WHITE);
+
+            char rarityText[10];
+            sprintf(rarityText, "%d", currentNode->item.rarity);
+            DrawText(rarityText, table.rectangle.x + 2 * colWidth + 10, yPos + 10, 20, WHITE);
+
+            char weightText[10];
+            sprintf(weightText, "%.2f", currentNode->item.weight);
+            DrawText(weightText, table.rectangle.x + 3 * colWidth + 10, yPos + 10, 20, WHITE);
+
+            rowIndex++;
+            currentNode = currentNode->nextNode;
+        }
+    }
 }
 
 Button byName;
 Button byValue;
 Button byRarity;
 Button byWeight;
-
-Button gainItem;
-Button getAll;
-Button loseItem;
 
 void InitnializeButtons()
 {
@@ -97,23 +104,6 @@ void InitnializeButtons()
         (Rectangle){ 1350, 300, 200, 40 },
         DARKGRAY, LIGHTGRAY,
         "WEIGHT");
-
-
-    //----------------------------------------------------------- adding/removing items
-    InitButtonElement(&gainItem,
-    (Rectangle){ 20, 760, 150, 40 },
-    DARKGREEN, GREEN,
-    "  Gain Item");
-
-    InitButtonElement(&getAll,
-    (Rectangle){ 20, 800, 150, 40 },
-    GOLD, BEIGE,
-    "GIVE ME ALL!");
-
-    InitButtonElement(&loseItem,
-    (Rectangle){ 20, 840, 150, 40 },
-    MAROON, RED,
-    "  Lose Item");
 }
 
 bool IsHovering(Button button)
@@ -131,14 +121,12 @@ void DrawButtonElement(Button button)
 
 void DrawAllButtons()
 {
+    InitnializeButtons();
+
     DrawButtonElement(byName);
     DrawButtonElement(byValue);
     DrawButtonElement(byRarity);
     DrawButtonElement(byWeight);
-
-    // DrawButtonElement(gainItem);
-    // DrawButtonElement(getAll);
-    // DrawButtonElement(loseItem);
 }
 
 Category SelectCategory()
@@ -153,81 +141,30 @@ Category SelectCategory()
     return -1;
 }
 
-void AddItem(Inventory* inventory, Item** database, int databaseSize)
-{
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-    {
-        if (databaseSize <= 0) return;
-
-        int randomIndex = GetRandomValue(0, databaseSize - 1);
-        Item* randomItem = database[randomIndex];
-
-        if (randomItem != NULL)
-        {
-            AddToInventory(inventory, randomItem);
-        }
-    }
-}
-
-void GetAll(Inventory* inventory, Item** database, int databaseSize)
-{
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-    {
-        for (int i = 0; i < databaseSize; i++)
-        {
-            if (database[i] != NULL)
-            {
-                AddToInventory(inventory, database[i]);
-            }
-        }
-    }
-}
-
-void LoseItem(Inventory* inventory)
-{
-    Item* itemList[TABLE_SIZE];
-    int itemCount = 0;
-
-    for (int i = 0; i < TABLE_SIZE; i++)
-    {
-        Node* currentNode = inventory->hashTable.hashTable[i];
-
-        while (currentNode != NULL)
-        {
-            itemList[itemCount++] = currentNode->item;
-            currentNode = currentNode->next;
-        }
-    }
-
-    if (itemCount > 0)
-    {
-        int randomIndex = GetRandomValue(0, itemCount - 1);
-        RemoveFromInventory(inventory, itemList[randomIndex]->name);
-    }
-}
-
-void InitializeMenu(Item** playerInventory, int inventorySize)
-{
-    InitializePanels();
-    InitializeTable(playerInventory, inventorySize);
-    InitnializeButtons();
-}
-
 void DrawMenu()
 {
     DrawAllPanels();
-    DrawTable(tableHeader, tableContent);
     DrawAllButtons();
+
+    Table inventoryTable =
+        {
+        (Rectangle){ 20, 100, 1300, 780 },
+        4,
+        TABLE_SIZE,
+        (const char*[]){"NAME", "VALUE", "RARITY", "WEIGHT"}
+        };
+
+    DrawMenuTable(inventoryTable, &inventory);
 }
 
-void UpdateMenu(Item** inventory, int size)
+void UpdateMenu(HashTable* inventory)
 {
     Category selectedCategory = SelectCategory();
 
-    if (selectedCategory != -1) {
-        SortInventory(inventory, size, selectedCategory);
+    if (selectedCategory != -1)
+    {
+        SortInventory(inventory, selectedCategory);
     }
 
-    tableContent.items = inventory;
-    tableContent.numRows = size;
+    DrawMenu();
 }

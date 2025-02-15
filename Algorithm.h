@@ -1,7 +1,7 @@
 ﻿#ifndef ALGORITHM_H
 #define ALGORITHM_H
 
-#include "itemdatabase.h"
+#include "hashtable.h"
 #include "ui.h"
 
 typedef enum Category
@@ -32,6 +32,6 @@ int Partition(Item** inventory, int low, int high, int (*compare)(Item*, Item*))
 void BubbleSortAlgorithm(Item** inventory, int size, int (*compare)(Item*, Item*));
 void QuickSortAlgorithm(Item** inventory, int low, int high, int (*compare)(Item*, Item*));
 
-void SortInventory(Item** inventory, int size, Category category);
+void SortInventory(HashTable* table, Category category);
 
 #endif //ALGORITHM_H

@@ -30,16 +30,18 @@ else()
 endif()
 
 add_executable(InventorySort main.c
-        ItemDatabase.h
-        ItemDatabase.c
-        HashSystem.h
-        HashSystem.c
         Algorithm.h
         Algorithm.c
+        UIold.h
+        UIold.c
+        Menuold.h
+        Menuold.c
+        Hashtable.h
+        Hashtable.c
+        Inventory.h
+        Inventory.c
         UI.h
         UI.c
-        PlayerInventory.h
-        PlayerInventory.c
         Menu.h
         Menu.c
 )

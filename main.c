@@ -1,34 +1,29 @@
 ﻿#include <stdio.h>
 #include "raylib.h"
-#include "ui.h"
-#include "itemdatabase.h"
-#include "algorithm.h"
+#include "menu.h"
+#include "inventory.h"
+
+
 
 int main(void)
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Inventory UI");
 
-    InitializeDatabase(inventory);
-
-    Item* playerInventory[INVENTORY_SIZE];
-    InitializeMenu(playerInventory, INVENTORY_SIZE);
+    InitializeMenuPanels();
+    CreateInventory();
 
     SetTargetFPS(60);
 
 
     while (!WindowShouldClose())
     {
-        UpdateMenu(inventory, INVENTORY_SIZE);
+        UpdateMenu(&inventory);
 
 
         BeginDrawing();
         ClearBackground(BLACK);
 
-
         DrawMenu();
-
-
-
 
         EndDrawing();
     }

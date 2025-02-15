@@ -1,26 +1,29 @@
 ﻿#ifndef MENU_H
 #define MENU_H
 
+#include <stdio.h>
 #include "raylib.h"
-#include "itemdatabase.h"
+#include "ui.h"
+#include "hashtable.h"
+#include "algorithm.h"
 
 #define SCREEN_WIDTH 1580
 #define SCREEN_HEIGHT 900
 
-void InitializePanels();
+
+void InitializeMenuPanels();
 void DrawAllPanels();
-void InitializeTable(HashTable** playerInventory, int inventorySize);
+void DrawMenuTable(Table table, HashTable* inventory);
 
 void InitnializeButtons();
-void DrawAllButtons();
 bool IsHovering(Button button);
-void AddItem(Inventory* inventory, Item** database, int databaseSize);
-void GetAll(Inventory* inventory, Item** database, int databaseSize);
-void LoseItem(Inventory* inventory);
+void DrawButtonElement(Button button);
+void DrawAllButtons();
+Category SelectCategory();
 
-void InitializeMenu(Item** playerInventory, int inventorySize);
+
+
 void DrawMenu();
-void UpdateMenu(Item** inventory, int size);
-
+void UpdateMenu(HashTable* inventory);
 
 #endif //MENU_H

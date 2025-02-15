@@ -1,8 +1,9 @@
-﻿#include "raylib.h"
+﻿#include <string.h>
+#include <stdio.h>
+#include "raylib.h"
 #include "algorithm.h"
-#include "itemdatabase.h"
-#include "ui.h"
-#include <string.h>
+#include "hashtable.h"
+
 
 //------------------------------------------------- generalized comparisons
 int CompareByName(Item* a, Item* b)
@@ -80,10 +81,22 @@ void QuickSortAlgorithm(Item** inventory, int low, int high, int (*compare)(Item
 
 //------------------------------------------------- inventory sorting
 
-void SortInventory(Item** inventory, int size, Category category)
+void SortInventory(HashTable* table, Category category)
 {
-    int (*compare)(Item*, Item*);
+    Item* allItems[TABLE_SIZE * 5];
+    int itemCount = 0;
 
+    for (int i = 0; i < TABLE_SIZE; i++)
+    {
+        Node* currentNode = table->buckets[i];
+        while (currentNode)
+        {
+            allItems[itemCount++] = &currentNode->item;
+            currentNode = currentNode->nextNode;
+        }
+    }
+
+    int (*compare)(Item*, Item*);
     switch (category)
     {
     case NAME:
@@ -99,9 +112,42 @@ void SortInventory(Item** inventory, int size, Category category)
         compare = CompareByWeight;
         break;
     default:
+        return;
     }
 
+    QuickSortAlgorithm(allItems, 0, itemCount - 1, compare);
 
-    //BubbleSortAlgorithm(inventory, size, compare);
-    QuickSortAlgorithm(inventory, 0, size - 1, compare);
+    for (int i = 0; i < itemCount; i++)
+    {
+        printf("[%s, %d gold, Rarity %d, %.2f kg]\n",
+               allItems[i]->name, allItems[i]->value,
+               allItems[i]->rarity, allItems[i]->weight);
+    }
 }
+
+
+// void SortInventory(Item** inventory, int size, Category category, HashTable* hashTable)
+// {
+//     int (*compare)(Item*, Item*);
+//
+//     switch (category)
+//     {
+//     case NAME:
+//         compare = CompareByName;
+//         break;
+//     case VALUE:
+//         compare = CompareByValue;
+//         break;
+//     case RARITY:
+//         compare = CompareByRarity;
+//         break;
+//     case WEIGHT:
+//         compare = CompareByWeight;
+//         break;
+//     default:
+//     }
+//
+//
+//     //BubbleSortAlgorithm(inventory, size, compare);
+//     QuickSortAlgorithm(inventory, 0, size - 1, compare);
+// }
