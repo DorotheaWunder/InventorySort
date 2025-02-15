@@ -21,6 +21,8 @@ typedef struct Node
 typedef struct HashTable
 {
     Node* buckets[TABLE_SIZE];
+    Item* sortedItems[TABLE_SIZE * 5];
+    int itemCount;
 } HashTable;
 
 

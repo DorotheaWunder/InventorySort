@@ -83,46 +83,29 @@ void QuickSortAlgorithm(Item** inventory, int low, int high, int (*compare)(Item
 
 void SortInventory(HashTable* table, Category category)
 {
-    Item* allItems[TABLE_SIZE * 5];
-    int itemCount = 0;
+    table->itemCount = 0;
 
     for (int i = 0; i < TABLE_SIZE; i++)
     {
         Node* currentNode = table->buckets[i];
-        while (currentNode)
-        {
-            allItems[itemCount++] = &currentNode->item;
+        while (currentNode) {
+            table->sortedItems[table->itemCount++] = &currentNode->item;
             currentNode = currentNode->nextNode;
         }
     }
 
     int (*compare)(Item*, Item*);
-    switch (category)
-    {
-    case NAME:
-        compare = CompareByName;
-        break;
-    case VALUE:
-        compare = CompareByValue;
-        break;
-    case RARITY:
-        compare = CompareByRarity;
-        break;
-    case WEIGHT:
-        compare = CompareByWeight;
-        break;
-    default:
-        return;
+    switch (category) {
+    case NAME: compare = CompareByName; break;
+    case VALUE: compare = CompareByValue; break;
+    case RARITY: compare = CompareByRarity; break;
+    case WEIGHT: compare = CompareByWeight; break;
+    default: return;
     }
 
-    QuickSortAlgorithm(allItems, 0, itemCount - 1, compare);
+    QuickSortAlgorithm(table->sortedItems, 0, table->itemCount - 1, compare);
 
-    for (int i = 0; i < itemCount; i++)
-    {
-        printf("[%s, %d gold, Rarity %d, %.2f kg]\n",
-               allItems[i]->name, allItems[i]->value,
-               allItems[i]->rarity, allItems[i]->weight);
-    }
+    printf("MENU HAS BEEN SORTED!\n");
 }
 
 

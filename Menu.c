@@ -43,37 +43,30 @@ void DrawMenuTable(Table table, HashTable* inventory)
 
     DrawRectangleRec(table.rectangle, (Color){60, 60, 60, 255});
 
-    for (int i = 0; i < table.columns; i++)
-    {
+    for (int i = 0; i < table.columns; i++) {
         float xPos = table.rectangle.x + i * colWidth;
         DrawText(table.columnHeaders[i], xPos + 10, table.rectangle.y + 10, 20, WHITE);
     }
 
-    int rowIndex = 0;
-    for (int i = 0; i < TABLE_SIZE; i++)
+
+    for (int i = 0; i < inventory->itemCount; i++)
     {
-        Node* currentNode = inventory->buckets[i];
-        while (currentNode)
-        {
-            float yPos = table.rectangle.y + (rowIndex + 1) * rowHeight;
+        Item* item = inventory->sortedItems[i];
+        float yPos = table.rectangle.y + (i + 1) * rowHeight;
 
-            DrawText(currentNode->item.name, table.rectangle.x + 10, yPos + 10, 20, WHITE);
+        DrawText(item->name, table.rectangle.x + 10, yPos + 10, 20, WHITE);
 
-            char valueText[10];
-            sprintf(valueText, "%d", currentNode->item.value);
-            DrawText(valueText, table.rectangle.x + colWidth + 10, yPos + 10, 20, WHITE);
+        char valueText[10];
+        sprintf(valueText, "%d", item->value);
+        DrawText(valueText, table.rectangle.x + colWidth + 10, yPos + 10, 20, WHITE);
 
-            char rarityText[10];
-            sprintf(rarityText, "%d", currentNode->item.rarity);
-            DrawText(rarityText, table.rectangle.x + 2 * colWidth + 10, yPos + 10, 20, WHITE);
+        char rarityText[10];
+        sprintf(rarityText, "%d", item->rarity);
+        DrawText(rarityText, table.rectangle.x + 2 * colWidth + 10, yPos + 10, 20, WHITE);
 
-            char weightText[10];
-            sprintf(weightText, "%.2f", currentNode->item.weight);
-            DrawText(weightText, table.rectangle.x + 3 * colWidth + 10, yPos + 10, 20, WHITE);
-
-            rowIndex++;
-            currentNode = currentNode->nextNode;
-        }
+        char weightText[10];
+        sprintf(weightText, "%.2f", item->weight);
+        DrawText(weightText, table.rectangle.x + 3 * colWidth + 10, yPos + 10, 20, WHITE);
     }
 }
 
@@ -165,6 +158,5 @@ void UpdateMenu(HashTable* inventory)
     {
         SortInventory(inventory, selectedCategory);
     }
-
     DrawMenu();
 }

@@ -17,9 +17,11 @@ unsigned int hash(const char* name)
 
 void InitHashTable(HashTable* table)
 {
-    for (int i = 0; i < TABLE_SIZE; i++) {
+    for (int i = 0; i < TABLE_SIZE; i++)
+    {
         table->buckets[i] = NULL;
     }
+    table->itemCount = 0;
 }
 
 void AddItem(HashTable* table, Item item)
