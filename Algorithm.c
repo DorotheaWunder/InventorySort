@@ -11,6 +11,11 @@ int CompareByName(Item* a, Item* b)
     return strcmp(a->name, b->name);
 }
 
+int CompareByAcquisition(Item* a, Item* b)
+{
+    return a->acquisitionOrder - b->acquisitionOrder;
+}
+
 int CompareByValue(Item* a, Item* b)
 {
     return b->value - a->value;
@@ -97,6 +102,7 @@ void SortInventory(HashTable* table, Category category)
     int (*compare)(Item*, Item*);
     switch (category) {
     case NAME: compare = CompareByName; break;
+    case ACQUISITION: compare = CompareByAcquisition; break;
     case VALUE: compare = CompareByValue; break;
     case RARITY: compare = CompareByRarity; break;
     case WEIGHT: compare = CompareByWeight; break;
@@ -107,30 +113,3 @@ void SortInventory(HashTable* table, Category category)
 
     printf("MENU HAS BEEN SORTED!\n");
 }
-
-
-// void SortInventory(Item** inventory, int size, Category category, HashTable* hashTable)
-// {
-//     int (*compare)(Item*, Item*);
-//
-//     switch (category)
-//     {
-//     case NAME:
-//         compare = CompareByName;
-//         break;
-//     case VALUE:
-//         compare = CompareByValue;
-//         break;
-//     case RARITY:
-//         compare = CompareByRarity;
-//         break;
-//     case WEIGHT:
-//         compare = CompareByWeight;
-//         break;
-//     default:
-//     }
-//
-//
-//     //BubbleSortAlgorithm(inventory, size, compare);
-//     QuickSortAlgorithm(inventory, 0, size - 1, compare);
-// }

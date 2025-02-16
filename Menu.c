@@ -26,7 +26,7 @@ void InitializeMenuPanels()
     InitPanelElement(&algorithmPanel,
         (Rectangle){ 1340, 400, 220, 480 },
         (Color){ 130, 130, 130, 255 },
-        "Using:");
+        "");
 }
 
 void DrawAllPanels()
@@ -71,32 +71,65 @@ void DrawMenuTable(Table table, HashTable* inventory)
 }
 
 Button byName;
+Button byAquired;
 Button byValue;
 Button byRarity;
 Button byWeight;
+
+Button getItem;
+Button loseItem;
+Button getAll;
+Button loseAll;
 
 void InitnializeButtons()
 {
     //----------------------------------------------------------- sorting category
     InitButtonElement(&byName,
-        (Rectangle){ 1350, 100, 200, 40 },
+        (Rectangle){ 1350, 90, 200, 40 },
         DARKGRAY, LIGHTGRAY,
         "NAME");
 
+    InitButtonElement(&byAquired,
+        (Rectangle){ 1350, 145, 200, 40 },
+        DARKGRAY, LIGHTGRAY,
+        "AQUIRED");
+
     InitButtonElement(&byValue,
-        (Rectangle){ 1350, 160, 200, 40 },
+        (Rectangle){ 1350, 204, 200, 40 },
         DARKGRAY, LIGHTGRAY,
         "VALUE");
 
     InitButtonElement(&byRarity,
-        (Rectangle){ 1350, 230, 200, 40},
+        (Rectangle){ 1350, 260, 200, 40},
         DARKGRAY, LIGHTGRAY,
         "RARITY");
 
     InitButtonElement(&byWeight,
-        (Rectangle){ 1350, 300, 200, 40 },
+        (Rectangle){ 1350, 320, 200, 40 },
         DARKGRAY, LIGHTGRAY,
         "WEIGHT");
+
+
+    //--------------------------------------------------------------- Item Buttons
+    InitButtonElement(&getItem,
+        (Rectangle){ 1350, 420, 200, 40 },
+        DARKGREEN, GREEN,
+        "Get Item");
+
+    InitButtonElement(&loseItem,
+        (Rectangle){ 1350, 480, 200, 40 },
+        MAROON, RED,
+        "Lose Item");
+
+    InitButtonElement(&getAll,
+        (Rectangle){ 1350, 540, 200, 40 },
+        YELLOW, WHITE,
+        "Give me all >:)");
+
+    InitButtonElement(&loseAll,
+        (Rectangle){ 1350, 600, 200, 40 },
+        BROWN, BEIGE,
+        "Steal it all >:¨(");
 }
 
 bool IsHovering(Button button)
@@ -117,9 +150,15 @@ void DrawAllButtons()
     InitnializeButtons();
 
     DrawButtonElement(byName);
+    DrawButtonElement(byAquired);
     DrawButtonElement(byValue);
     DrawButtonElement(byRarity);
     DrawButtonElement(byWeight);
+
+    DrawButtonElement(getItem);
+    DrawButtonElement(loseItem);
+    DrawButtonElement(getAll);
+    DrawButtonElement(loseAll);
 }
 
 Category SelectCategory()
@@ -127,11 +166,23 @@ Category SelectCategory()
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
         if (IsHovering(byName)) return NAME;
+        if (IsHovering(byAquired)) return ACQUISITION;
         if (IsHovering(byValue)) return VALUE;
         if (IsHovering(byRarity)) return RARITY;
         if (IsHovering(byWeight)) return WEIGHT;
     }
     return -1;
+}
+
+void ManageInventory()
+{
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    {
+        if (IsHovering(getItem)) GainItem();
+        if (IsHovering(loseItem)) LoseItem();
+        if (IsHovering(getAll)) GainAll();
+        if (IsHovering(loseAll)) LoseAll();
+    }
 }
 
 void DrawMenu()
@@ -147,16 +198,18 @@ void DrawMenu()
         (const char*[]){"NAME", "VALUE", "RARITY", "WEIGHT"}
         };
 
-    DrawMenuTable(inventoryTable, &inventory);
+    DrawMenuTable(inventoryTable, &inventorySystem.playerInventory);
 }
 
 void UpdateMenu(HashTable* inventory)
 {
     Category selectedCategory = SelectCategory();
 
+    ManageInventory();
+    
     if (selectedCategory != -1)
     {
-        SortInventory(inventory, selectedCategory);
+        SortInventory(&inventorySystem.playerInventory, selectedCategory);
     }
     DrawMenu();
 }

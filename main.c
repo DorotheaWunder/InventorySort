@@ -10,8 +10,10 @@ int main(void)
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Inventory UI");
 
     InitializeMenuPanels();
-    CreateInventory();
+    InitializeItems();
 
+    SortInventory(&inventorySystem.playerInventory, NAME);
+    
     SetTargetFPS(60);
 
 

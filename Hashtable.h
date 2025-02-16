@@ -7,6 +7,7 @@
 typedef struct Item
 {
     char name[NAME_LENGTH];
+    int acquisitionOrder;
     int value;
     int rarity;
     float weight;
@@ -25,6 +26,12 @@ typedef struct HashTable
     int itemCount;
 } HashTable;
 
+typedef struct {
+    HashTable playerInventory;
+    HashTable itemList;
+} InventorySystem;
+
+extern InventorySystem inventorySystem;
 
 unsigned int hash(const char* name);
 void InitHashTable(HashTable* table);

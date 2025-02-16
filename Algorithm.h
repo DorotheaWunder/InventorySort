@@ -7,11 +7,10 @@
 typedef enum Category
 {
     NAME,
+    ACQUISITION,
     VALUE,
     RARITY,
     WEIGHT
-
-    //--- last aquired?
 } Category;
 
 typedef enum Algorithm
@@ -22,6 +21,7 @@ typedef enum Algorithm
 
 
 int CompareByName(Item* a, Item* b);
+int CompareByAcquisition(Item* a, Item* b);
 int CompareByValue(Item* a, Item* b);
 int CompareByRarity(Item* a, Item* b);
 int CompareByWeight(Item* a, Item* b);
