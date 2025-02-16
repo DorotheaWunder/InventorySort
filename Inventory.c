@@ -116,5 +116,5 @@ void GainAll()
 
 void LoseAll()
 {
-    //ClearTable(&inventorySystem.playerInventory);
+    ClearTable(&inventorySystem.playerInventory);
 }

@@ -13,7 +13,7 @@ int main(void)
     InitializeItems();
 
     SortInventory(&inventorySystem.playerInventory, NAME);
-    
+
     SetTargetFPS(60);
 
 

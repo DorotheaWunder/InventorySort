@@ -38,5 +38,6 @@ void InitHashTable(HashTable* table);
 void AddItem(HashTable* table, Item item);
 void RemoveItem(HashTable* table, const char* name);
 void DisplayTable(HashTable* table);
+void ClearTable(HashTable* table);
 
 #endif //HASHTABLE_H
